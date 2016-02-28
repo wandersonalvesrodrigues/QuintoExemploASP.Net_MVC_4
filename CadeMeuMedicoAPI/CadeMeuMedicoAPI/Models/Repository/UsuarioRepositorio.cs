@@ -21,7 +21,7 @@ namespace CadeMeuMedicoAPI.Repository
                 IDbDataParameter parameter = null;
 
                 var query = new StringBuilder();
-                query.Append("SELECT [IDUsuario] FROM [Usuarios]").Append(" ");
+                query.Append("SELECT IDUsuario,Nome,Login,Email FROM [Usuarios]").Append(" ");
                 query.Append("WHERE [Login] = @Login").Append(" ").Append("AND").Append(" ").Append("[Senha] = @Senha").Append(" ");
 
                 #region[Login]
@@ -46,6 +46,9 @@ namespace CadeMeuMedicoAPI.Repository
                     {
                         usuario = new Usuario();
                         usuario.IDUsuario = Convert.ToInt32(reader["IDUsuario"]);
+                        usuario.Nome = reader["Nome"].ToString();
+                        usuario.Login = reader["Login"].ToString();
+                        usuario.Email = reader["Email"].ToString();
                     }
                 }
                 return usuario;
